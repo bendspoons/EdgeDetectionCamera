@@ -1,4 +1,4 @@
-[![Release](https://jitpack.io/v/adityaarora1/LiveEdgeDetection.svg)](https://jitpack.io/#adityaarora1/LiveEdgeDetection)
+[![](https://jitpack.io/v/vinisauter/LiveEdgeDetection.svg)](https://jitpack.io/#vinisauter/LiveEdgeDetection)
 
 # LiveEdgeDetection
 
@@ -39,8 +39,7 @@ and add the repository's url to the app's build.gradle file.
 
 ```
 dependencies {
-   compile 'com.github.adityaarora1:LiveEdgeDetection:1.0.6'
-   
+   implementation 'com.github.vinisauter.LiveEdgeDetection:liveedgedetection:1.2'
     // Other dependencies your app might use
 }
 ```
