@@ -118,7 +118,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
             isPermissionNotGranted = true;
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CAMERA)) {
-                Toast.makeText(this,"Enable camera permission from settings", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Enable camera permission from settings", Toast.LENGTH_SHORT).show();
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.CAMERA},
@@ -126,9 +126,12 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
             }
         } else {
             if (!isPermissionNotGranted) {
-                mImageSurfaceView = new ScanSurfaceView(ScanActivity.this,
-                        scanCanvasView, this);
-                cameraPreviewLayout.addView(mImageSurfaceView);
+                for (int i = 0; i < cameraPreviewLayout.getChildCount(); i++)
+                    if (cameraPreviewLayout.getChildAt(i) instanceof ScanSurfaceView)
+                        cameraPreviewLayout.removeView(cameraPreviewLayout);
+                mImageSurfaceView =
+                        new ScanSurfaceView(ScanActivity.this, scanCanvasView, this);
+                cameraPreviewLayout.addView(mImageSurfaceView, 0);
             } else {
                 isPermissionNotGranted = false;
             }
@@ -136,8 +139,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_CAMERA:
                 onRequestCamera(grantResults);
@@ -156,9 +158,12 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mImageSurfaceView = new ScanSurfaceView(ScanActivity.this,
-                                    scanCanvasView, ScanActivity.this);
-                            cameraPreviewLayout.addView(mImageSurfaceView);
+                            for (int i = 0; i < cameraPreviewLayout.getChildCount(); i++)
+                                if (cameraPreviewLayout.getChildAt(i) instanceof ScanSurfaceView)
+                                    cameraPreviewLayout.removeView(cameraPreviewLayout);
+                            mImageSurfaceView =
+                                    new ScanSurfaceView(ScanActivity.this, scanCanvasView, ScanActivity.this);
+                            cameraPreviewLayout.addView(mImageSurfaceView, 0);
                         }
                     });
                 }
@@ -219,8 +224,8 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         try {
             copyBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
 
-            int height  = getWindow().findViewById(Window.ID_ANDROID_CONTENT).getHeight();
-            int width   = getWindow().findViewById(Window.ID_ANDROID_CONTENT).getWidth();
+            int height = getWindow().findViewById(Window.ID_ANDROID_CONTENT).getHeight();
+            int width = getWindow().findViewById(Window.ID_ANDROID_CONTENT).getWidth();
 
             copyBitmap = ScanUtils.resizeToScreenContentSize(copyBitmap, width, height);
             Mat originalMat = new Mat(copyBitmap.getHeight(), copyBitmap.getWidth(), CvType.CV_8UC1);
@@ -232,7 +237,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
                 if (null != quad) {
                     double resultArea = Math.abs(Imgproc.contourArea(quad.contour));
                     double previewArea = originalMat.rows() * originalMat.cols();
-                    if(resultArea > previewArea * 0.08) {
+                    if (resultArea > previewArea * 0.08) {
                         points = new ArrayList<>();
                         points.add(new PointF((float) quad.points[0].x, (float) quad.points[0].y));
                         points.add(new PointF((float) quad.points[1].x, (float) quad.points[1].y));

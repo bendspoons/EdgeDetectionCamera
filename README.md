@@ -40,7 +40,7 @@ and add the repository's url to the app's build.gradle file.
 ```
 dependencies {
    implementation 'com.github.vinisauter.LiveEdgeDetection:liveedgedetection:1.2'
-    // Other dependencies your app might use
+   // Other dependencies your app might use
 }
 ```
 # Usage
