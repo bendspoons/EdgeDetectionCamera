@@ -131,6 +131,9 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         //    }
         // }
         // parameters.setPreviewSize(size.width, size.height);
+
+        Log.i(TAG, "previewSize.toString()");
+        Log.i(TAG, previewSize.toString());
         // parameters.setPreviewSize(previewSize.width, previewSize.height);
 
         if (parameters.getSupportedFocusModes() != null && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
@@ -139,7 +142,9 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
             parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
 
-        // Camera.Size size = ScanUtils.determinePictureSize(camera, parameters.getPreviewSize());
+        Camera.Size size = ScanUtils.determinePictureSize(camera, parameters.getPreviewSize());
+        Log.i(TAG, "size.toString()");
+        Log.i(TAG, size.toString());
         // parameters.setPictureSize(size.width, size.height);
         parameters.setPictureFormat(ImageFormat.JPEG);
 
