@@ -133,8 +133,8 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         // parameters.setPreviewSize(size.width, size.height);
 
         Log.i(TAG, "previewSize.toString()");
-        Log.i(TAG, previewSize.width.toString());
-        Log.i(TAG, previewSize.height.toString());
+        Log.i(TAG, previewSize.width+"");
+        Log.i(TAG, previewSize.height+"");
         // parameters.setPreviewSize(previewSize.width, previewSize.height);
 
         if (parameters.getSupportedFocusModes() != null && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
@@ -145,8 +145,8 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
 
         Camera.Size size = ScanUtils.determinePictureSize(camera, parameters.getPreviewSize());
         Log.i(TAG, "size.toString()");
-        Log.i(TAG, size.width.toString());
-        Log.i(TAG, size.height.toString());
+        Log.i(TAG, size.width+"");
+        Log.i(TAG, size.height+"");
         // parameters.setPictureSize(size.width, size.height);
         parameters.setPictureFormat(ImageFormat.JPEG);
 
