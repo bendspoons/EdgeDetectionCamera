@@ -123,26 +123,24 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         Camera.Parameters parameters = camera.getParameters();
         camera.setDisplayOrientation(ScanUtils.configureCameraAngle((Activity) context));
 
-        List<Size> allSizes = parameters.getSupportedPictureSizes();
-        Camera.Size size = allSizes.get(0); // get top size
-        for (int i = 0; i < allSizes.size(); i++) {
-           if (allSizes.get(i).width > size.width) {
-             size = allSizes.get(i);
-           }
-        }
-        parameters.setPreviewSize(size.width, size.height);
+        // List<Size> allSizes = parameters.getSupportedPictureSizes();
+        // Camera.Size size = allSizes.get(0); // get top size
+        // for (int i = 0; i < allSizes.size(); i++) {
+        //    if (allSizes.get(i).width > size.width) {
+        //      size = allSizes.get(i);
+        //    }
+        // }
+        // parameters.setPreviewSize(size.width, size.height);
         // parameters.setPreviewSize(previewSize.width, previewSize.height);
 
-        if (parameters.getSupportedFocusModes() != null
-                && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+        if (parameters.getSupportedFocusModes() != null && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
             parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-        } else if (parameters.getSupportedFocusModes() != null
-                && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+        } else if (parameters.getSupportedFocusModes() != null && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
             parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
 
         // Camera.Size size = ScanUtils.determinePictureSize(camera, parameters.getPreviewSize());
-        parameters.setPictureSize(size.width, size.height);
+        // parameters.setPictureSize(size.width, size.height);
         parameters.setPictureFormat(ImageFormat.JPEG);
 
         camera.setParameters(parameters);
