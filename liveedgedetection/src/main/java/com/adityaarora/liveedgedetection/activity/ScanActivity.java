@@ -303,4 +303,16 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
         System.gc();
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+      Intent resultIntent = new Intent();
+      resultIntent.putExtra("code", "403");
+      resultIntent.putExtra("result", "ABORTED");
+      resultIntent.putExtra("data", "");
+      setResult(Activity.RESULT_CANCELED, resultIntent);
+
+      System.gc();
+      finish();
+    }
 }
