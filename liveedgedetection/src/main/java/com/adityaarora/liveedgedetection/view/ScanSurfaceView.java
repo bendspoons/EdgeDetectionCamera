@@ -123,16 +123,16 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         Camera.Parameters parameters = camera.getParameters();
         camera.setDisplayOrientation(ScanUtils.configureCameraAngle((Activity) context));
         parameters.setPreviewSize(previewSize.width, previewSize.height);
-        // if (parameters.getSupportedFocusModes() != null
-        //         && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-        //     parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-        // } else if (parameters.getSupportedFocusModes() != null
-        //         && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
-        //     parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
-        // }
+        if (parameters.getSupportedFocusModes() != null
+                && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+        } else if (parameters.getSupportedFocusModes() != null
+                && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        }
 
-        Camera.Size size = ScanUtils.determinePictureSize(camera, parameters.getPreviewSize());
-        parameters.setPictureSize(size.width, size.height);
+        // Camera.Size size = ScanUtils.determinePictureSize(camera, parameters.getPreviewSize());
+        // parameters.setPictureSize(size.width, size.height);
         parameters.setPictureFormat(ImageFormat.JPEG);
 
         camera.setParameters(parameters);
