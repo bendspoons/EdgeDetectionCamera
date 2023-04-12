@@ -131,6 +131,7 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
            }
         }
         parameters.setPreviewSize(size.width, size.height);
+        // parameters.setPreviewSize(previewSize.width, previewSize.height);
 
         if (parameters.getSupportedFocusModes() != null
                 && parameters.getSupportedFocusModes().contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
