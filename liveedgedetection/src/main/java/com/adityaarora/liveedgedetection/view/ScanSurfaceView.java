@@ -147,7 +147,7 @@ public class ScanSurfaceView extends FrameLayout implements SurfaceHolder.Callba
         Log.i(TAG, "size.toString()");
         Log.i(TAG, size.width+"");
         Log.i(TAG, size.height+"");
-        // parameters.setPictureSize(size.width, size.height);
+        parameters.setPictureSize(size.width, size.height);
         parameters.setPictureFormat(ImageFormat.JPEG);
 
         camera.setParameters(parameters);
