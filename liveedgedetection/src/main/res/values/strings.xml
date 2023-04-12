@@ -2,7 +2,7 @@
     <string name="camera_activity_permission_denied_toast">Please go to app settings and grant camera permission</string>
 
     <string name="finding_rect">Dunkleren Hintergrund wählen</string>
-    <string name="move_away">eiter weg</string>
+    <string name="move_away">weiter weg</string>
     <string name="move_closer">näher ran</string>
     <string name="adjust_angle">Winkel korrigieren</string>
     <string name="hold_still">Stillhalten</string>
